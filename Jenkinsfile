@@ -17,8 +17,8 @@ pipeline {
                             configName: 'SSH-JavaServer-1', 
                             transfers: [
                                 sshTransfer(
-                                    sourceFiles: 'FSAPOCPipeline/target/my-app.jar',
-                                    removePrefix: 'FSAPOCPipeline/target/',
+                                    sourceFiles: 'target/my-app.jar',
+                                    removePrefix: 'target/',
                                     remoteDirectory: '/home/ec2-user')
                             ]
                         )
