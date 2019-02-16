@@ -7,14 +7,24 @@ pipeline {
               sh 'mvn -B -DskipTests clean package'
           }
         }
-        stage('Test') {
+        stage('DeployToStaging') {
             steps {
-                echo 'Testing..'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
+                    sshPublisher(
+                        failOnError: true,
+                        continueOnError: false,
+                        publishers: [
+                            sshPublisherDesc(
+                                configName: 'SSH-JavaServer-1', 
+                                transfers: [
+                                    sshTransfer(
+                                        sourceFiles: 'FSAPOCPipeline/target/my-app.jar',
+                                        removePrefix: 'FSAPOCPipeline/target/',
+                                        remoteDirectory: '/home/ec2-user')
+                                ]
+                            )
+                        ]
+                    )
+                }
             }
         }
     }
