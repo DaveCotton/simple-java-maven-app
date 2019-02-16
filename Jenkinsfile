@@ -19,7 +19,7 @@ pipeline {
                                 sshTransfer(
                                     sourceFiles: 'target/my-app.jar',
                                     removePrefix: 'target/',
-                                    remoteDirectory: '/home/ec2-user')
+                                    remoteDirectory: '.')
                             ]
                         )
                     ]
