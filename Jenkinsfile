@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'EC2_INSTANCE',
+               defaultValue: '3.81.44.35'
+    }
     stages {
         /* stage('Build') {
           steps {
